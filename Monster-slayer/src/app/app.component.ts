@@ -7,9 +7,10 @@ import { Turns } from './turns.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  playerHealth: number = 100;
-  monsterHealth: number = 100;
-  gameIsRunning: boolean = false;
+
+  playerHealth: Number = 100;
+  monsterHealth: Number = 100;
+  gameIsRunning: Boolean = false;
   turns: Turns[] = [];
 
   startGame() {
