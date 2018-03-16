@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Turns } from './turns.model';
 
 @Component({
   selector: 'app-root',
@@ -6,8 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  playerHealth = 100;
-  monsterHealth = 100;
-  gameIsRunning = false;
-  turns = [];
+  playerHealth: Number = 100;
+  monsterHealth: Number = 100;
+  gameIsRunning: Boolean = false;
+  turns: Turns[];
+
+  startGame() {
+    this.gameIsRunning = true;
+    this.monsterHealth = 0;
+    this.playerHealth = 0;
+    this.turns = [];
+  }
 }
