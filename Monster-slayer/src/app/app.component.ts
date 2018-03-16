@@ -7,15 +7,91 @@ import { Turns } from './turns.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  playerHealth: Number = 100;
-  monsterHealth: Number = 100;
-  gameIsRunning: Boolean = false;
-  turns: Turns[];
+  playerHealth: number = 100;
+  monsterHealth: number = 100;
+  gameIsRunning: boolean = false;
+  turns: Turns[] = [];
 
   startGame() {
     this.gameIsRunning = true;
-    this.monsterHealth = 0;
-    this.playerHealth = 0;
+    this.monsterHealth = 100;
+    this.playerHealth = 100;
+    this.turns = [];
+  }
+
+  attack() {
+    var damage = this.calculateDamage(3, 10);
+    this.monsterHealth -=  damage;
+    this.turns.push(new Turns(), {
+      isPlayer: true,
+      text:'Player hits Monster for ' + damage
+    });
+
+    if (this.checkWin()) {
+        return;
+    }
+    this.monsterAttacks();
+  }
+
+  calculateDamage(min, max) {
+    return Math.max(Math.floor(Math.random() * max) + 1, min);
+  }
+
+  checkWin() {
+    if (this.monsterHealth <= 0) {
+      if (confirm('You won! New Game?')) {
+          this.startGame();
+      } else {
+          this.gameIsRunning = false;
+      }
+      this.turns = [];
+      return true;
+    } else if (this.playerHealth <= 0) {
+      if (confirm('You lost! New Game?')) {
+          this.startGame();
+      } else {
+          this.gameIsRunning = false;
+      }
+      this.turns = [];
+      return true;
+    }
+    return false;
+  }
+
+  specialAttack() {
+    var damage = this.calculateDamage(10, 20);
+    this.monsterHealth -=  damage;
+    this.turns.push( new Turns(), {
+      isPlayer: true,
+      text:'Player hits Monster for ' + damage,
+    });
+    if (this.checkWin()) {
+        return;
+    }
+    this.monsterAttacks();
+
+  }
+  heal() {
+    if (this.playerHealth <= 90) {
+        this.playerHealth += 10;
+    } else {
+        this.playerHealth = 100;
+    }
+    this.monsterAttacks();
+  }
+    
+  monsterAttacks(){
+    var damage = this.calculateDamage(5, 12);
+    this.playerHealth -= damage;
+    this.checkWin();
+    this.turns.push( new Turns(), {
+      isPlayer: false,
+      text:'Monster hits Player for ' + damage,
+    });
+  }
+
+  giveUp() {
+    this.gameIsRunning = false;
     this.turns = [];
   }
 }
