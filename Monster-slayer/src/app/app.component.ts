@@ -10,7 +10,7 @@ export class AppComponent {
   playerHealth: Number = 100;
   monsterHealth: Number = 100;
   gameIsRunning: Boolean = false;
-  turns: Turns[];
+  turns: Turns[] = [];
 
   startGame() {
     this.gameIsRunning = true;
