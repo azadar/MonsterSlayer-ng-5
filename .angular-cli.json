@@ -19,7 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "assets/foundation.min.css",
+        "../src/assets/foundation.min.css",
         "styles.css"
         
       ],

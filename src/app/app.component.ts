@@ -8,9 +8,9 @@ import { Turns } from './turns.model';
 })
 export class AppComponent {
 
-  playerHealth: Number = 100;
-  monsterHealth: Number = 100;
-  gameIsRunning: Boolean = false;
+  playerHealth = 100;
+  monsterHealth = 100;
+  gameIsRunning = false;
   turns: Turns[] = [];
 
   startGame() {
@@ -25,7 +25,7 @@ export class AppComponent {
     this.monsterHealth -=  damage;
     this.turns.push(new Turns(), {
       isPlayer: true,
-      text:'Player hits Monster for ' + damage
+      text: 'Player hits Monster for ' + damage
     });
 
     if (this.checkWin()) {
@@ -78,7 +78,6 @@ export class AppComponent {
     } else {
         this.playerHealth = 100;
     }
-    this.monsterAttacks();
   }
     
   monsterAttacks(){
