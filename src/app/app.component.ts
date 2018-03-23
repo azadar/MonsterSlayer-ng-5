@@ -43,6 +43,7 @@ export class AppComponent {
       if (confirm('You won! New Game?')) {
         this.startGame();
       } else {
+        this.startGame();
         this.gameIsRunning = false;
       }
       this.turns = [];
@@ -51,6 +52,7 @@ export class AppComponent {
       if (confirm('You lost! New Game?')) {
         this.startGame();
       } else {
+        this.startGame();
         this.gameIsRunning = false;
       }
       this.turns = [];
