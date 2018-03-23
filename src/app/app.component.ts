@@ -21,7 +21,7 @@ export class AppComponent {
   }
 
   attack() {
-    var damage = this.calculateDamage(3, 10);
+    const damage = this.calculateDamage(3, 10);
     this.monsterHealth -= damage;
     this.turns.push(new Turns(
       true,
@@ -62,7 +62,7 @@ export class AppComponent {
   }
 
   specialAttack() {
-    var damage = this.calculateDamage(10, 20);
+    const damage = this.calculateDamage(10, 20);
     this.monsterHealth -= damage;
     this.turns.push(new Turns(
       true,
@@ -83,7 +83,7 @@ export class AppComponent {
   }
 
   monsterAttacks() {
-    var damage = this.calculateDamage(5, 12);
+    const damage = this.calculateDamage(5, 12);
     this.playerHealth -= damage;
     this.checkWin();
     this.turns.push(new Turns(
