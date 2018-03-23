@@ -22,14 +22,14 @@ export class AppComponent {
 
   attack() {
     var damage = this.calculateDamage(3, 10);
-    this.monsterHealth -=  damage;
-    this.turns.push(new Turns(), {
-      isPlayer: true,
-      text: 'Player hits Monster for ' + damage
-    });
+    this.monsterHealth -= damage;
+    this.turns.push(new Turns(
+      true,
+      'Player hits Monster for ' + damage
+    ));
 
     if (this.checkWin()) {
-        return;
+      return;
     }
     this.monsterAttacks();
   }
@@ -41,17 +41,17 @@ export class AppComponent {
   checkWin() {
     if (this.monsterHealth <= 0) {
       if (confirm('You won! New Game?')) {
-          this.startGame();
+        this.startGame();
       } else {
-          this.gameIsRunning = false;
+        this.gameIsRunning = false;
       }
       this.turns = [];
       return true;
     } else if (this.playerHealth <= 0) {
       if (confirm('You lost! New Game?')) {
-          this.startGame();
+        this.startGame();
       } else {
-          this.gameIsRunning = false;
+        this.gameIsRunning = false;
       }
       this.turns = [];
       return true;
@@ -61,33 +61,33 @@ export class AppComponent {
 
   specialAttack() {
     var damage = this.calculateDamage(10, 20);
-    this.monsterHealth -=  damage;
-    this.turns.push( new Turns(), {
-      isPlayer: true,
-      text:'Player hits Monster for ' + damage,
-    });
+    this.monsterHealth -= damage;
+    this.turns.push(new Turns(
+      true,
+      'Player hits Monster for ' + damage,
+    ));
     if (this.checkWin()) {
-        return;
+      return;
     }
     this.monsterAttacks();
 
   }
   heal() {
     if (this.playerHealth <= 90) {
-        this.playerHealth += 10;
+      this.playerHealth += 10;
     } else {
-        this.playerHealth = 100;
+      this.playerHealth = 100;
     }
   }
-    
-  monsterAttacks(){
+
+  monsterAttacks() {
     var damage = this.calculateDamage(5, 12);
     this.playerHealth -= damage;
     this.checkWin();
-    this.turns.push( new Turns(), {
-      isPlayer: false,
-      text:'Monster hits Player for ' + damage,
-    });
+    this.turns.push(new Turns(
+      false,
+      'Monster hits Player for ' + damage,
+    ));
   }
 
   giveUp() {
