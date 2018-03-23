@@ -1,4 +1,4 @@
 export class Turns {
-    isPlayer: boolean = false;
-    text: string = '';
+    constructor(public isPlayer: boolean, public text: string) {
+    }
 }
